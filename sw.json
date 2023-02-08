@@ -1,0 +1,1105 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Snippets API",
+        "description": "Test description",
+        "termsOfService": "https://www.google.com/policies/terms/",
+        "contact": {
+            "email": "contact@snippets.local"
+        },
+        "license": {
+            "name": "BSD License"
+        },
+        "version": "v1"
+    },
+    "host": "127.0.0.1:8000",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/api/v1",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Basic": {
+            "type": "basic"
+        }
+    },
+    "security": [
+        {
+            "Basic": []
+        }
+    ],
+    "paths": {
+        "/blog/": {
+            "get": {
+                "operationId": "blog_list",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PostRead"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "post": {
+                "operationId": "blog_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostWrite"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PostWrite"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "parameters": []
+        },
+        "/blog/{id}/": {
+            "get": {
+                "operationId": "blog_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PostRead"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "put": {
+                "operationId": "blog_update",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostWrite"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PostWrite"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "patch": {
+                "operationId": "blog_partial_update",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PostWrite"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PostWrite"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "delete": {
+                "operationId": "blog_delete",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "A unique integer value identifying this blog post.",
+                    "required": true,
+                    "type": "integer"
+                }
+            ]
+        },
+        "/blog/{post_id}/comment/": {
+            "get": {
+                "operationId": "blog_comment_list",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CommentRead"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "post": {
+                "operationId": "blog_comment_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CommentWrite"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CommentWrite"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "post_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/blog/{post_id}/comment/{id}/": {
+            "get": {
+                "operationId": "blog_comment_read",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CommentRead"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "put": {
+                "operationId": "blog_comment_update",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CommentWrite"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CommentWrite"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "patch": {
+                "operationId": "blog_comment_partial_update",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CommentWrite"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CommentWrite"
+                        }
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "delete": {
+                "operationId": "blog_comment_delete",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "blog"
+                ]
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "A unique integer value identifying this blog coment.",
+                    "required": true,
+                    "type": "integer"
+                },
+                {
+                    "name": "post_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/dj-rest-auth/login/": {
+            "post": {
+                "operationId": "dj-rest-auth_login_create",
+                "description": "Check the credentials and return the REST Token\nif the credentials are valid and authenticated.\nCalls Django Auth login method to register User ID\nin Django session framework\n\nAccept the following POST parameters: username, password\nReturn the REST Framework Token Object's key.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserLogin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/UserLogin"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/logout/": {
+            "get": {
+                "operationId": "dj-rest-auth_logout_list",
+                "summary": "Calls Django logout method and delete the Token object\nassigned to the current User object.",
+                "description": "Accepts/Returns nothing.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "post": {
+                "operationId": "dj-rest-auth_logout_create",
+                "summary": "Calls Django logout method and delete the Token object\nassigned to the current User object.",
+                "description": "Accepts/Returns nothing.",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/password/change/": {
+            "post": {
+                "operationId": "dj-rest-auth_password_change_create",
+                "summary": "Calls Django Auth SetPasswordForm save method.",
+                "description": "Accepts the following POST parameters: new_password1, new_password2\nReturns the success/fail message.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PasswordChange"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PasswordChange"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/password/reset/": {
+            "post": {
+                "operationId": "dj-rest-auth_password_reset_create",
+                "summary": "Calls Django Auth PasswordResetForm save method.",
+                "description": "Accepts the following POST parameters: email\nReturns the success/fail message.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PasswordReset"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PasswordReset"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/password/reset/confirm/": {
+            "post": {
+                "operationId": "dj-rest-auth_password_reset_confirm_create",
+                "summary": "Password reset e-mail link is confirmed, therefore\nthis resets the user's password.",
+                "description": "Accepts the following POST parameters: token, uid,\n    new_password1, new_password2\nReturns the success/fail message.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PasswordResetConfirm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/PasswordResetConfirm"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/registration/": {
+            "post": {
+                "operationId": "dj-rest-auth_registration_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserRegister"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/UserRegister"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/registration/resend-email/": {
+            "post": {
+                "operationId": "dj-rest-auth_registration_resend-email_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ResendEmailVerification"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/ResendEmailVerification"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/registration/verify-email/": {
+            "post": {
+                "operationId": "dj-rest-auth_registration_verify-email_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/VerifyEmail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/VerifyEmail"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/token/refresh/": {
+            "post": {
+                "operationId": "dj-rest-auth_token_refresh_create",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CookieTokenRefresh"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/CookieTokenRefresh"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/token/verify/": {
+            "post": {
+                "operationId": "dj-rest-auth_token_verify_create",
+                "description": "Takes a token and indicates if it is valid.  This view provides no\ninformation about a token's fitness for a particular use.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenVerify"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/TokenVerify"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        },
+        "/dj-rest-auth/user/": {
+            "get": {
+                "operationId": "dj-rest-auth_user_read",
+                "summary": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.",
+                "description": "Default accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/UserList"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "put": {
+                "operationId": "dj-rest-auth_user_update",
+                "summary": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.",
+                "description": "Default accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserList"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/UserList"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "patch": {
+                "operationId": "dj-rest-auth_user_partial_update",
+                "summary": "Reads and updates UserModel fields\nAccepts GET, PUT, PATCH methods.",
+                "description": "Default accepted fields: username, first_name, last_name\nDefault display fields: pk, username, email, first_name, last_name\nRead-only fields: pk, email\n\nReturns UserModel fields.",
+                "parameters": [
+                    {
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserList"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/UserList"
+                        }
+                    }
+                },
+                "tags": [
+                    "dj-rest-auth"
+                ]
+            },
+            "parameters": []
+        }
+    },
+    "definitions": {
+        "PostRead": {
+            "required": [
+                "title",
+                "body"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "author": {
+                    "title": "Author",
+                    "type": "string",
+                    "readOnly": true,
+                    "minLength": 1
+                },
+                "title": {
+                    "title": "Post title",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "body": {
+                    "title": "Post body",
+                    "type": "string",
+                    "maxLength": 1000,
+                    "minLength": 1
+                },
+                "files": {
+                    "title": "Files",
+                    "type": "string",
+                    "readOnly": true,
+                    "format": "uri"
+                },
+                "created_at": {
+                    "title": "Created at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "updated_at": {
+                    "title": "Updated at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "total_likes": {
+                    "title": "Total likes",
+                    "type": "string",
+                    "readOnly": true
+                }
+            }
+        },
+        "PostWrite": {
+            "required": [
+                "title",
+                "body"
+            ],
+            "type": "object",
+            "properties": {
+                "title": {
+                    "title": "Post title",
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 1
+                },
+                "body": {
+                    "title": "Post body",
+                    "type": "string",
+                    "maxLength": 1000,
+                    "minLength": 1
+                },
+                "files": {
+                    "title": "Files",
+                    "type": "string",
+                    "readOnly": true,
+                    "format": "uri"
+                },
+                "created_at": {
+                    "title": "Created at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "updated_at": {
+                    "title": "Updated at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "total_likes": {
+                    "title": "Total likes",
+                    "type": "string",
+                    "readOnly": true
+                }
+            }
+        },
+        "CommentRead": {
+            "required": [
+                "post",
+                "body"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "author": {
+                    "title": "Author",
+                    "type": "string",
+                    "readOnly": true,
+                    "minLength": 1
+                },
+                "post": {
+                    "title": "Post",
+                    "type": "integer"
+                },
+                "body": {
+                    "title": "Body",
+                    "type": "string",
+                    "maxLength": 150,
+                    "minLength": 1
+                },
+                "file": {
+                    "title": "File",
+                    "type": "string",
+                    "readOnly": true,
+                    "format": "uri"
+                },
+                "created_at": {
+                    "title": "Created at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "updated_at": {
+                    "title": "Updated at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "total_likes": {
+                    "title": "Total likes",
+                    "type": "string",
+                    "readOnly": true
+                }
+            }
+        },
+        "CommentWrite": {
+            "required": [
+                "post",
+                "body"
+            ],
+            "type": "object",
+            "properties": {
+                "post": {
+                    "title": "Post",
+                    "type": "integer"
+                },
+                "body": {
+                    "title": "Body",
+                    "type": "string",
+                    "maxLength": 150,
+                    "minLength": 1
+                },
+                "file": {
+                    "title": "File",
+                    "type": "string",
+                    "readOnly": true,
+                    "format": "uri"
+                },
+                "created_at": {
+                    "title": "Created at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "updated_at": {
+                    "title": "Updated at",
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true
+                },
+                "total_likes": {
+                    "title": "Total likes",
+                    "type": "string",
+                    "readOnly": true
+                }
+            }
+        },
+        "UserLogin": {
+            "required": [
+                "password"
+            ],
+            "type": "object",
+            "properties": {
+                "username": {
+                    "title": "Username",
+                    "type": "string",
+                    "readOnly": true,
+                    "minLength": 1
+                },
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "format": "email"
+                },
+                "password": {
+                    "title": "Password",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "PasswordChange": {
+            "required": [
+                "new_password1",
+                "new_password2"
+            ],
+            "type": "object",
+            "properties": {
+                "new_password1": {
+                    "title": "New password1",
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                },
+                "new_password2": {
+                    "title": "New password2",
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                }
+            }
+        },
+        "PasswordReset": {
+            "required": [
+                "email"
+            ],
+            "type": "object",
+            "properties": {
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "format": "email",
+                    "minLength": 1
+                }
+            }
+        },
+        "PasswordResetConfirm": {
+            "required": [
+                "new_password1",
+                "new_password2",
+                "uid",
+                "token"
+            ],
+            "type": "object",
+            "properties": {
+                "new_password1": {
+                    "title": "New password1",
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                },
+                "new_password2": {
+                    "title": "New password2",
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                },
+                "uid": {
+                    "title": "Uid",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "token": {
+                    "title": "Token",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "UserRegister": {
+            "required": [
+                "email",
+                "password",
+                "password2"
+            ],
+            "type": "object",
+            "properties": {
+                "username": {
+                    "title": "Nickname",
+                    "type": "string",
+                    "maxLength": 30
+                },
+                "email": {
+                    "title": "Адрес электронной почты",
+                    "type": "string",
+                    "format": "email",
+                    "maxLength": 254,
+                    "minLength": 1
+                },
+                "password": {
+                    "title": "Пароль",
+                    "type": "string",
+                    "maxLength": 128,
+                    "minLength": 1
+                },
+                "password2": {
+                    "title": "Password2",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "ResendEmailVerification": {
+            "required": [
+                "email"
+            ],
+            "type": "object",
+            "properties": {
+                "email": {
+                    "title": "Email",
+                    "type": "string",
+                    "format": "email",
+                    "minLength": 1
+                }
+            }
+        },
+        "VerifyEmail": {
+            "required": [
+                "key"
+            ],
+            "type": "object",
+            "properties": {
+                "key": {
+                    "title": "Key",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "CookieTokenRefresh": {
+            "type": "object",
+            "properties": {
+                "refresh": {
+                    "title": "Refresh",
+                    "description": "WIll override cookie.",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "access": {
+                    "title": "Access",
+                    "type": "string",
+                    "readOnly": true,
+                    "minLength": 1
+                }
+            }
+        },
+        "TokenVerify": {
+            "required": [
+                "token"
+            ],
+            "type": "object",
+            "properties": {
+                "token": {
+                    "title": "Token",
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "UserList": {
+            "required": [
+                "email",
+                "first_name",
+                "last_name",
+                "birth_date"
+            ],
+            "type": "object",
+            "properties": {
+                "image": {
+                    "title": "Image",
+                    "type": "string",
+                    "readOnly": true,
+                    "format": "uri"
+                },
+                "username": {
+                    "title": "Nickname",
+                    "type": "string",
+                    "maxLength": 30
+                },
+                "email": {
+                    "title": "Адрес электронной почты",
+                    "type": "string",
+                    "format": "email",
+                    "maxLength": 254,
+                    "minLength": 1
+                },
+                "first_name": {
+                    "title": "First name",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "last_name": {
+                    "title": "Last name",
+                    "type": "string",
+                    "minLength": 1
+                },
+                "birth_date": {
+                    "title": "Birth date",
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        }
+    }
+}

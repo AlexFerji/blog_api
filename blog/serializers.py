@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import BlogPost, BlogComent
-
+from .mixins import LikedMixin
+from blog import services as likes_services
 
 class PostReadSerializer(serializers.ModelSerializer):
     """Сериализатор для чтения поста """
@@ -10,8 +11,15 @@ class PostReadSerializer(serializers.ModelSerializer):
         model = BlogPost
         fields = ['id', 'author', 'title', 'body', 'files', 'created_at', 'updated_at', 'total_likes']
 
+    def get_is_fan(self, obj) -> bool:
+        """Проверяет, лайкнул ли `request.user` твит (`obj`).
+        """
+        user = self.context.get('request').user
+        return likes_services.is_fan(obj, user)
 
-class PostWriteSerializer(serializers.ModelSerializer):
+
+class PostWriteSerializer(LikedMixin,
+serializers.ModelSerializer):
     """Сериализатор для создание поста"""
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
@@ -21,6 +29,9 @@ class PostWriteSerializer(serializers.ModelSerializer):
         fields = ['author', 'title', 'body', 'files', 'created_at', 'updated_at', 'total_likes']
 
 
+
+
+
 class CommentReadSerializer(serializers.ModelSerializer):
     """Сериализатор для чтение коментария"""
     author = serializers.CharField(source="author.username", read_only=True)
@@ -28,6 +39,13 @@ class CommentReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogComent
         fields = ['id', 'author', 'post', 'body', 'file', 'created_at', 'updated_at', 'total_likes']
+
+
+    def get_is_fan(self, obj) -> bool:
+        """Проверяет, лайкнул ли `request.user` твит (`obj`).
+        """
+        user = self.context.get('request').user
+        return likes_services.is_fan(obj, user)
 
 
 class CommentWriteSerializer(serializers.ModelSerializer):

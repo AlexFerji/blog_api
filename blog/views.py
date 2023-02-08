@@ -10,10 +10,12 @@ from .serializers import (
 )
 
 from .permissions import IsAuthorOrReadOnly
+from .mixins import LikedMixin
 
 
 
-class PostViewSet(viewsets.ModelViewSet):
+class PostViewSet(LikedMixin,
+                  viewsets.ModelViewSet):
     queryset = BlogPost.objects.all()
 
     def get_serializer_class(self):
@@ -34,7 +36,8 @@ class PostViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
 
-class CommentViewSet(viewsets.ModelViewSet):
+class CommentViewSet(LikedMixin,
+                     viewsets.ModelViewSet):
     queryset = BlogComent.objects.all()
 
     def get_queryset(self):

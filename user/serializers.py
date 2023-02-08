@@ -61,6 +61,9 @@ class UserListSerializer(serializers.ModelSerializer):
         profile.save()
 
         return instance
+    
+    def get_username(self, obj):
+        return obj.username
 
 
 
